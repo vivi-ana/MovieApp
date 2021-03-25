@@ -4,24 +4,27 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
+import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.ConcatAdapter
 import com.example.movieapplication.R
 import com.example.movieapplication.core.Resource
 import com.example.movieapplication.data.local.AppDatabase
 import com.example.movieapplication.data.local.LocalMovieDataSource
 
-import com.example.movieapplication.data.model.Movie
-import com.example.movieapplication.data.remote.RemoteMovieDataSourse
+import com.example.movieapplication.data.model.movie.Movie
+import com.example.movieapplication.data.remote.movie.RemoteMovieDataSourse
 import com.example.movieapplication.databinding.FragmentMovieBinding
-import com.example.movieapplication.domain.MovieRepositoryImpl
-import com.example.movieapplication.domain.RetrofitClient
-import com.example.movieapplication.presentation.MovieViewModel
-import com.example.movieapplication.presentation.MovieViewModelFactory
+import com.example.movieapplication.domain.movie.MovieRepositoryImpl
+import com.example.movieapplication.domain.movie.RetrofitClient
+import com.example.movieapplication.presentation.movie.MovieViewModel
+import com.example.movieapplication.presentation.movie.MovieViewModelFactory
 import com.example.movieapplication.ui.movie.adapters.MovieAdapter
 import com.example.movieapplication.ui.movie.adapters.concat.PopularConcatAdapter
 import com.example.movieapplication.ui.movie.adapters.concat.TopRatedConcatAdapter
@@ -32,7 +35,9 @@ class MovieFragment : Fragment(R.layout.fragment_movie), MovieAdapter.OnMovieCli
     private val vieModel by viewModels<MovieViewModel> {
         MovieViewModelFactory(
             MovieRepositoryImpl(
-                RemoteMovieDataSourse(RetrofitClient.webservice),
+                RemoteMovieDataSourse(
+                    RetrofitClient.webservice
+                ),
                 LocalMovieDataSource(AppDatabase.getDatabase(requireContext()).movieDao())
             )
         ) //aca se diferencia el implement no la interfaz
@@ -40,6 +45,7 @@ class MovieFragment : Fragment(R.layout.fragment_movie), MovieAdapter.OnMovieCli
     private lateinit var concatAdapter: ConcatAdapter
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setHasOptionsMenu(true)
         binding = FragmentMovieBinding.bind(view)//busca en paralelo
         concatAdapter = ConcatAdapter()
         vieModel.fetchMainScreenMovies().observe(viewLifecycleOwner, Observer { result ->
@@ -90,6 +96,15 @@ class MovieFragment : Fragment(R.layout.fragment_movie), MovieAdapter.OnMovieCli
         })
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_main, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return NavigationUI.onNavDestinationSelected(item, requireView().findNavController()) ||
+        super.onOptionsItemSelected(item)
+    }
      override fun onMovieClick(movie: Movie) {
         val action = MovieFragmentDirections.actionMovieFragmentToMovieDetailFragment(
             movie.poster_path,

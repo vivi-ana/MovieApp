@@ -1,10 +1,10 @@
-package com.example.movieapplication.domain
+package com.example.movieapplication.domain.movie
 
 import com.example.movieapplication.core.InternetCheck
 import com.example.movieapplication.data.local.LocalMovieDataSource
-import com.example.movieapplication.data.model.MovieList
-import com.example.movieapplication.data.model.toMovieEntity
-import com.example.movieapplication.data.remote.RemoteMovieDataSourse
+import com.example.movieapplication.data.model.movie.MovieList
+import com.example.movieapplication.data.model.movie.toMovieEntity
+import com.example.movieapplication.data.remote.movie.RemoteMovieDataSourse
 
 class MovieRepositoryImpl(
     private val dataSourceRemote: RemoteMovieDataSourse,

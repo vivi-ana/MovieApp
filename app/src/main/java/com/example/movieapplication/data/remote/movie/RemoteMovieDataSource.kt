@@ -1,8 +1,8 @@
-package com.example.movieapplication.data.remote
+package com.example.movieapplication.data.remote.movie
 
-import com.example.movieapplication.application.AppConstants
-import com.example.movieapplication.data.model.MovieList
-import com.example.movieapplication.domain.WebService
+import com.example.movieapplication.utils.AppConstants
+import com.example.movieapplication.data.model.movie.MovieList
+import com.example.movieapplication.domain.movie.WebService
 
 class RemoteMovieDataSourse(private val webService: WebService) {
     suspend fun getUpcomingMovies(): MovieList = webService.getUpcomingMovies(AppConstants.API_KEY)

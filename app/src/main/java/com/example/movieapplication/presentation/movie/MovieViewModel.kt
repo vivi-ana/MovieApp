@@ -1,10 +1,10 @@
-package com.example.movieapplication.presentation
+package com.example.movieapplication.presentation.movie
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.liveData
 import com.example.movieapplication.core.Resource
-import com.example.movieapplication.domain.MovieRepository
+import com.example.movieapplication.domain.movie.MovieRepository
 import kotlinx.coroutines.Dispatchers
 
 class MovieViewModel(private val repo: MovieRepository): ViewModel() {

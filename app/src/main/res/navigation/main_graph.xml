@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_movieFragment_to_movieDetailFragment"
             app:destination="@id/movieDetailFragment" />
+        <action
+            android:id="@+id/action_movieFragment_to_blogHomeFragment"
+            app:destination="@id/blogHomeFragment" />
     </fragment>
     <fragment
         android:id="@+id/movieDetailFragment"
@@ -44,4 +47,9 @@
             android:name="releaseDate"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/blogHomeFragment"
+        android:name="com.example.movieapplication.ui.blog.BlogHomeFragment"
+        android:label="fragment_blog"
+        tools:layout="@layout/fragment_blog" />
 </navigation>

@@ -1,8 +1,8 @@
 package com.example.movieapplication.data.local
 
-import com.example.movieapplication.data.model.MovieEntity
-import com.example.movieapplication.data.model.MovieList
-import com.example.movieapplication.data.model.toMovieList
+import com.example.movieapplication.data.model.movie.MovieEntity
+import com.example.movieapplication.data.model.movie.MovieList
+import com.example.movieapplication.data.model.movie.toMovieList
 
 class LocalMovieDataSource(private val movieDao: MovieDao) {
     suspend fun getUpcomingMovies(): MovieList {
