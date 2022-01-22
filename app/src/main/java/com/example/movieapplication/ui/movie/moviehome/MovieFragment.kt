@@ -1,4 +1,4 @@
-package com.example.movieapplication.ui.movie
+package com.example.movieapplication.ui.movie.moviehome
 
 import android.os.Bundle
 import android.util.Log
@@ -15,6 +15,8 @@ import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.ConcatAdapter
 import com.example.movieapplication.R
 import com.example.movieapplication.core.Resource
+import com.example.movieapplication.core.hide
+import com.example.movieapplication.core.show
 import com.example.movieapplication.data.local.AppDatabase
 import com.example.movieapplication.data.local.LocalMovieDataSource
 
@@ -51,12 +53,12 @@ class MovieFragment : Fragment(R.layout.fragment_movie), MovieAdapter.OnMovieCli
         vieModel.fetchMainScreenMovies().observe(viewLifecycleOwner, Observer { result ->
             when (result) {
                 is Resource.Loading -> {
-                    binding.progressBar.visibility = View.VISIBLE
+                    binding.progressBar.show()
                 }
                 is Resource.Success -> {
                     //Log.d("LiveData", "Upcoming: ${result.data.first} \n \n Popular: ${result.data.second} \n" +
                     //      " \n TopRated: ${result.data.third} ")
-                    binding.progressBar.visibility = View.GONE
+                    binding.progressBar.hide()
                     concatAdapter.apply {
                         addAdapter(
                             0,
@@ -90,7 +92,7 @@ class MovieFragment : Fragment(R.layout.fragment_movie), MovieAdapter.OnMovieCli
                 }
                 is Resource.Failure -> {
                     Log.d("Error", "${result.exception}")
-                    binding.progressBar.visibility = View.GONE
+                    binding.progressBar.hide()
                 }
             }
         })

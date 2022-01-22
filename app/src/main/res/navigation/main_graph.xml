@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/movieFragment"
-        android:name="com.example.movieapplication.ui.movie.MovieFragment"
+        android:name="com.example.movieapplication.ui.movie.moviehome.MovieFragment"
         android:label="fragment_movie"
-        tools:layout="@layout/fragment_movie" >
+        tools:layout="@layout/fragment_movie">
         <action
             android:id="@+id/action_movieFragment_to_movieDetailFragment"
             app:destination="@id/movieDetailFragment" />
         <action
-            android:id="@+id/action_movieFragment_to_blogHomeFragment"
-            app:destination="@id/blogHomeFragment" />
+            android:id="@+id/action_movieFragment_to_blogLoginFragment"
+            app:destination="@id/blogLoginFragment" />
     </fragment>
     <fragment
         android:id="@+id/movieDetailFragment"
-        android:name="com.example.movieapplication.ui.moviedetails.MovieDetailFragment"
+        android:name="com.example.movieapplication.ui.movie.moviedetails.MovieDetailFragment"
         android:label="fragment_movie_detail"
         tools:layout="@layout/fragment_movie_detail" >
         <argument
@@ -49,7 +49,52 @@
     </fragment>
     <fragment
         android:id="@+id/blogHomeFragment"
-        android:name="com.example.movieapplication.ui.blog.BlogHomeFragment"
+        android:name="com.example.movieapplication.ui.blog.bloghome.BlogHomeFragment"
         android:label="fragment_blog"
-        tools:layout="@layout/fragment_blog" />
+        tools:layout="@layout/fragment_blog" >
+        <action
+            android:id="@+id/action_blogHomeFragment_to_movieFragment"
+            app:destination="@id/movieFragment"
+            app:popUpTo="@id/movieFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/blogLoginFragment"
+        android:name="com.example.movieapplication.ui.blog.blogauth.BlogLoginFragment"
+        android:label="fragment_blog_login"
+        tools:layout="@layout/fragment_blog_login" >
+        <action
+            android:id="@+id/action_blogLoginFragment_to_blogRegisterFragment"
+            app:destination="@id/blogRegisterFragment" />
+        <action
+            android:id="@+id/action_blogLoginFragment_to_blogHomeFragment"
+            app:destination="@id/blogHomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/blogRegisterFragment"
+        android:name="com.example.movieapplication.ui.blog.blogauth.BlogRegisterFragment"
+        android:label="fragment_blog_register"
+        tools:layout="@layout/fragment_blog_register" >
+        <action
+            android:id="@+id/action_blogRegisterFragment_to_blogSetupProfileFragment"
+            app:destination="@id/blogSetupProfileFragment" />
+        <action
+            android:id="@+id/action_blogRegisterFragment_to_blogHomeFragment"
+            app:destination="@id/blogHomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/blogSetupProfileFragment"
+        android:name="com.example.movieapplication.ui.blog.blogauth.BlogSetupProfileFragment"
+        android:label="fragment_blog_setup_profile"
+        tools:layout="@layout/fragment_blog_setup_profile" />
+    <fragment
+        android:id="@+id/blogCameraFragment"
+        android:name="com.example.movieapplication.ui.blog.blogcamera.BlogCameraFragment"
+        android:label="fragment_blog_camera"
+        tools:layout="@layout/fragment_blog_camera" />
+    <fragment
+        android:id="@+id/blogProfileFragment"
+        android:name="com.example.movieapplication.ui.blog.blogprofile.BlogProfileFragment"
+        android:label="fragment_blog_profile"
+        tools:layout="@layout/fragment_blog_profile" />
 </navigation>

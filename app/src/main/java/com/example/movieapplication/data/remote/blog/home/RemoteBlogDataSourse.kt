@@ -1,4 +1,4 @@
-package com.example.movieapplication.data.remote.blog
+package com.example.movieapplication.data.remote.blog.home
 
 import com.example.movieapplication.core.Resource
 import com.example.movieapplication.data.model.blog.Post
